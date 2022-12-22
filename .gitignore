@@ -1,0 +1,8 @@
+# MacOs
+.DS_Store
+
+# WebStorm
+.idea
+
+# Project
+node_modules
