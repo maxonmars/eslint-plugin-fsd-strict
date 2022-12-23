@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-fsd-strict-plugin",
+  "name": "eslint-plugin-fsd-strict",
   "version": "0.0.0",
   "description": "Plugin for Feature-Sliced Design. Architectural methodology for frontend projects.",
   "keywords": [
