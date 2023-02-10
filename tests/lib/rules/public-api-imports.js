@@ -11,6 +11,8 @@
 const rule = require('../../../lib/rules/public-api-imports'),
 	RuleTester = require('eslint').RuleTester;
 
+const publicApiErrorMessage = rule.meta.messages.publicApi;
+const testApiErrorMessage = rule.meta.messages.testApi;
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
@@ -73,14 +75,16 @@ ruleTester.run('public-api-imports', rule, {
 	invalid: [
 		{
 			code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/model/file.ts'",
-			errors: [{message: 'Absolute import is allowed only from Public API'}],
+			errors: [{message: publicApiErrorMessage}],
 			options: aliasOptions,
+			output:
+				"import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article'",
 		},
 		{
 			filename:
 				'/Users/userName/WebStormProjects/blog/src/shared/lib/storybook/StoreDecorator.tsx',
 			code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing/file.tsx'",
-			errors: [{message: 'Absolute import is allowed only from Public API'}],
+			errors: [{message: publicApiErrorMessage}],
 			options: [
 				{
 					alias: '@',
@@ -91,14 +95,14 @@ ruleTester.run('public-api-imports', rule, {
 					],
 				},
 			],
+			output:
+				"import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article'",
 		},
 		{
 			filename:
 				'/Users/userName/WebStormProjects/blog/src/entities/forbidden.ts',
 			code: "import { addCommentFormActions, addCommentFormReducer } from '@/entities/Article/testing'",
-			errors: [
-				{message: 'Test data must be imported from publicApi/testing.ts'},
-			],
+			errors: [{message: testApiErrorMessage}],
 			options: [
 				{
 					alias: '@',
@@ -109,6 +113,7 @@ ruleTester.run('public-api-imports', rule, {
 					],
 				},
 			],
+			output: null,
 		},
 	],
 });
