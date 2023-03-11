@@ -1,6 +1,6 @@
 {
 	"name": "eslint-plugin-fsd-strict",
-	"version": "0.0.10",
+	"version": "0.0.14",
 	"description": "Plugin for Feature-Sliced Design. Architectural methodology for frontend projects.",
 	"keywords": [
 		"eslint",
@@ -16,7 +16,8 @@
 		"lint:js": "eslint .",
 		"test": "mocha tests --recursive",
 		"update:eslint-docs": "eslint-doc-generator",
-		"create:rule": "yo eslint:rule"
+		"create:rule": "yo eslint:rule",
+		"publish": "npm publish"
 	},
 	"dependencies": {
 		"micromatch": "^4.0.5",
